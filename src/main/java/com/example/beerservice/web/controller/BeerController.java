@@ -1,0 +1,35 @@
+package com.example.beerservice.web.controller;
+
+import com.example.beerservice.web.model.BeerDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
+
+
+@RequestMapping("/api/v1/beer")
+@RestController
+public class BeerController {
+
+
+    @GetMapping("/{beerId}")
+    public ResponseEntity<BeerDto> getBeeByID(@PathVariable("beerId") UUID beerId){
+        return new ResponseEntity<>(BeerDto.builder().build(), HttpStatus.OK);
+
+    }
+
+
+    @PostMapping
+    public ResponseEntity<BeerDto> saveNewBeer(@RequestBody BeerDto beerDto){
+        return new ResponseEntity<>( HttpStatus.CREATED);
+
+    }
+
+    @PutMapping("/{beerId}")
+    public ResponseEntity<BeerDto> UpdateBeer(@PathVariable("beerId") UUID beerId,@RequestBody BeerDto beerDto){
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
+}
